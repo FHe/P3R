@@ -1,5 +1,5 @@
 """
-Nelder Mead Simplex optimization routine used in pi-surf
+Nelder Mead Simplex- and Levenberg-Marquardt optimization routines used in pppr
 
 Authors/modifications:
 ----------------------
