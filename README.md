@@ -3,7 +3,7 @@
 
 Author is Frank Heberling, Geochemist from Karlsruhe. Any contributions / ideas / suggestions are welcome. So if you want to join in, just leave me a note.
 
-The GUI and the optimization routine are largely adapted from the sxrd modul in the **xraypy** project on https://github.com/xraypy/tdl, even though P3R contains some new features.
+The GUI and the optimization routine are largely adapted from the **sxrd modul** in the **TDL** project on https://github.com/xraypy/tdl, although P3R contains some new features.
 
 The chemical equilibrium calculations fully rely on **PhreeqC** (http://wwwbrr.cr.usgs.gov/projects/GWC_coupled/phreeqc/). Visualization, Parameter variations, optimization and statistical analyses are performed by phyton code. Correspondingly "chemical parameters" in the title means any type of value, which can be input into a PhreeqC calculation.
 
@@ -17,7 +17,7 @@ To run the code you need:
    *  **Scipy** (https://www.scipy.org/)
    *  **matplotlib** (http://matplotlib.org/)
    *  **wxpython** (http://www.wxpython.org/)
-   * in order to install **PhreeqPy** I recommend to get **pip** (https://bootstrap.pypa.io/get-pip.py; then you execute **python get-pip.py**; after you have installed pip you can run: **pip install -U phreeqpy**; and copy a suitable **IPhreeqc.dll** from here: ftp://brrftp.cr.usgs.gov/pub/charlton/iphreeqc/) 
+   * in order to install **PhreeqPy** I recommend to get **pip** (https://bootstrap.pypa.io/get-pip.py and execute **python get-pip.py**; (if you don't have it already with your Python installation); after you have installed pip you can run: **pip install -U phreeqpy**; and copy a suitable **IPhreeqc.dll** from here: ftp://brrftp.cr.usgs.gov/pub/charlton/iphreeqc/) 
    * now you should be ready to run **P3R**
     
 Further instructions and some example P3R projects will follow...
