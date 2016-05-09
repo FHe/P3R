@@ -1,7 +1,7 @@
 # P3R
 P3R stands for: **Python PhreeqC Parameter Refinement**. It's a Python-PhreeqC coupled code for optimization and statistical analyses of chemical parameters. 
 
-Only Author so far is Frank Heberling, a Geochemist from Karlsruhe. Any contributions / ideas / suggestions are welcome. So if you want to join in, just leave me a note.
+Only Author so far is Frank Heberling, Geochemist from Karlsruhe. Any contributions / ideas / suggestions are welcome. So if you want to join in, just leave me a note.
 
 The GUI and the optimization routine are largely adapted from the sxrd modul in the **xraypy** project on https://github.com/xraypy/tdl, even though P3R contains quite some new features.
 
