@@ -5,7 +5,7 @@ Author is Frank Heberling, Geochemist from Karlsruhe. Any contributions / ideas 
 
 The GUI and the optimization routine are largely adapted from the **sxrd modul** in the **TDL** project on https://github.com/xraypy/tdl, although P3R contains some new features.
 
-The chemical equilibrium calculations fully rely on **PhreeqC** (http://wwwbrr.cr.usgs.gov/projects/GWC_coupled/phreeqc/). Visualization, Parameter variations, optimization and statistical analyses are performed by phyton code. Correspondingly "chemical parameters" in the title means any type of value, which can be input into a PhreeqC calculation.
+The chemical equilibrium calculations fully rely on **PhreeqC** (http://wwwbrr.cr.usgs.gov/projects/GWC_coupled/phreeqc/). Correspondingly "chemical parameters" in the title means any type of value, which can be input into a PhreeqC calculation. Visualization, Parameter variations, optimization and statistical analyses are performed by phyton code.
 
 PhreeqC is implemented through **PhreeqPy** (http://www.phreeqpy.com/).
 
