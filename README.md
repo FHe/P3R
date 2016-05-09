@@ -12,12 +12,12 @@ PhreeqC is implemented into the code through **PhreeqPy** (http://www.phreeqpy.c
 Instalation/Dependencies:
 
 To run the code you need: 
-    **Python** (https://www.python.org/,  only version 2.7 is used so far, but in principle it should run on other versions as well).
-    **Numpy** (http://www.numpy.org/)
-    **Scipy** (https://www.scipy.org/)
-    **matplotlib** (http://matplotlib.org/)
-    **wxpython** (http://www.wxpython.org/)
-    in order to install PhreeqPy I recommend to get **pip** (https://bootstrap.pypa.io/get-pip.py; then you do python get-pip.py; after you have installed pip you can run: pip install -U phreeqpy...; copy a suitable IPhreeqc.dll from here: ftp://brrftp.cr.usgs.gov/pub/charlton/iphreeqc/; then you should be ready to run P3R)
+   *  **Python** (https://www.python.org/,  only version 2.7 is used so far, but in principle it should run on other versions as well).
+   *  **Numpy** (http://www.numpy.org/)
+   *  **Scipy** (https://www.scipy.org/)
+   *  **matplotlib** (http://matplotlib.org/)
+   *  **wxpython** (http://www.wxpython.org/)
+   *  in order to install PhreeqPy I recommend to get **pip** (https://bootstrap.pypa.io/get-pip.py; then you do python get-pip.py; after you have installed pip you can run: pip install -U phreeqpy...; copy a suitable IPhreeqc.dll from here: ftp://brrftp.cr.usgs.gov/pub/charlton/iphreeqc/; then you should be ready to run P3R)
     
     Further instructions and some example P3R projects will follow...
 
