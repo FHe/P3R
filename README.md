@@ -18,8 +18,8 @@ To run the code you need:
    *  **matplotlib** (http://matplotlib.org/)
    *  **wxpython** (http://www.wxpython.org/)
    * in order to install **PhreeqPy** I recommend to get **pip** (https://bootstrap.pypa.io/get-pip.py and execute **python get-pip.py**; (if you don't have it already with your Python installation); after you have installed pip you can run: **pip install -U phreeqpy**; and copy a suitable **IPhreeqc.dll** from here: ftp://brrftp.cr.usgs.gov/pub/charlton/iphreeqc/) 
-   * *now you should be ready to run **P3R***
-   * to do so you just doubleclick on **pppr-gui.py**
+   * *now you should be ready to run* ***P3R***
+   * to do so you just doubleclick on **pppr_gui.py**
     
 Further instructions and some example P3R projects will follow...
 
