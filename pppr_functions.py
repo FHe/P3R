@@ -87,7 +87,7 @@ def write_par(parameter, param_labels, filename = 'parameters.new'):
     f.write('% param_label              value     std-dev          min          max    '+\
             'refine_flag\n')
     for i in param_labels:
-        line = "%13s %18.12f %12.8f %12.4f %12.4f %10s\n" % (i,parameter[i][0],
+        line = "%13s %18.12e %12.8e %12.4e %12.4e %10s\n" % (i,parameter[i][0],
                                                       parameter[i][4],
                                                       parameter[i][1],
                                                       parameter[i][2],

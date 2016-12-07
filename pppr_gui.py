@@ -232,7 +232,7 @@ class wxPPPRFrame(wx.Frame):
             f.write(' x_value        y_value        y_err          y_model        residual       chi**2    lower_bound    upper_bound   \n')
             dat = self.nb.data
             for i in range(len(dat[0])):
-                line = " %12.6f   %12.6f   %12.6f   %12.6f   %12.6f   %12.6f   %12.6f   %12.6f\n" %\
+                line = " %12.6e   %12.6e   %12.6e   %12.6e   %12.6e   %12.6e   %12.6e   %12.6e\n" %\
                        (dat[0][i],dat[1][i],dat[2][i],dat[3][i],dat[4][i],dat[5][i], (dat[3][i]-dat[6][i]), (dat[3][i]+dat[6][i]))
                 f.write(line)
             f.close()
