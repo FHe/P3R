@@ -154,7 +154,7 @@ def simplex(frame):
         if panel.StopFit:
             frame.SetStatusText('Fit stopped after '+str(z)+' iterations',0)
             not_converged = False
-            print 'Fit aborted by user after '+str(z)+' iterations'
+            print('Fit aborted by user after '+str(z)+' iterations')
         Xref, Yref = reflection(points[maxi], Xav, alpha, used_params, frame.nb)
         if Yref < function_values[mini]:
             Xexp, Yexp = expansion(Xref, Xav, gamma, used_params, frame.nb)
@@ -202,13 +202,13 @@ def simplex(frame):
             
         if act_ftol < ftol:
             not_converged = False
-            print '\n CONVERGENCE REACHED DUE TO FTOL \n'
+            print('\n CONVERGENCE REACHED DUE TO FTOL \n')
         if z >= maxiter:
             not_converged = False
-            print '\n NO CONVERGENCE, STOP DUE TO MAXITER \n'
+            print('\n NO CONVERGENCE, STOP DUE TO MAXITER \n')
         z = z+1
-    if not panel.StopFit: print ' Downhill Simplex stopped after '+str(z-1)+' iterations'
-    print 'best fit chi**2 = '+str(round(function_values[mini],8))+'\n'
+    if not panel.StopFit: print(' Downhill Simplex stopped after '+str(z-1)+' iterations')
+    print('best fit chi**2 = '+str(round(function_values[mini],8))+'\n')
     frame.SetStatusText('End of Downhill Simplex, best chi**2: '+str(round(function_values[mini],8)),0)
     frame.SetStatusText('',1)
     param_best = points[mini]
@@ -262,7 +262,7 @@ def LM_fit(frame):
 
     result = leastsq(target, vector, args = (used_params, insert, frame.nb), Dfun = Jacobi, col_deriv = 1, full_output = 1, ftol = 1e-12)
     wx.Yield()
-    print result
+    print(result)
     frame.nb.parameter = insert(used_params, result[0], frame.nb.parameter)
     frame.nb.model()
     frame.SetStatusText('fitting finished, best chi**2 = '+str(round(frame.nb.chi2,12)),0)

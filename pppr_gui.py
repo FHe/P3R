@@ -304,7 +304,7 @@ class PPPRNotebook(wx.Notebook):
             for bl in self.datasets:
                 if bl.plot > -1: b+=1
             if b > (plot_dims[0] * plot_dims[1]):
-                print "\nPlot Dimensions are too small \nfor the number of Datasets to be displayed!"
+                print("\nPlot Dimensions are too small \nfor the number of Datasets to be displayed!")
                 pass
             else:
                 self.Figure1.clear()
@@ -358,7 +358,7 @@ class PPPRNotebook(wx.Notebook):
             for bl in self.datasets:
                 if bl.plot > -1: b+=1
             if b > (plot_dims[0] * plot_dims[1]):
-                print "\nPlot Dimensions are too small \nfor the number of Datasets to be displayed!"
+                print("\nPlot Dimensions are too small \nfor the number of Datasets to be displayed!")
                 pass
             else:
                 self.Figure1.clear()
@@ -418,16 +418,16 @@ class PPPRNotebook(wx.Notebook):
                 output = self.Phreeq.get_selected_output_array()
                 output = output[(len(output)-len(self.data[0])):len(output)]
                 if len(output) != len(self.data[0]):
-                    print 'model output structure does not match data structure'
-                    print output
-                    print len(output), len(self.data[0])
+                    print('model output structure does not match data structure')
+                    print(output)
+                    print(len(output), len(self.data[0]))
                     pass
                 else:
                     output = Num.transpose(output)
                     for i in range(len(output[0])):
                         if round(self.data[0][i],1) != round(output[0][i],1):
-                            print 'Warning model conditions do not match data'
-                            print round(self.data[0][i],1),  round(output[0][i],1)
+                            print('Warning model conditions do not match data')
+                            print(round(self.data[0][i],2),  round(output[0][i],2))
                         self.data[3][i] = output[1][i]
                     self.data[4] = self.data[1]-self.data[3]
                     self.data[5] = (self.data[4]/self.data[2])**2
@@ -438,7 +438,7 @@ class PPPRNotebook(wx.Notebook):
                         n = n+ dat.n
                     self.chi2 = self.chi2/(n-len(self.used_params))
             else:
-                print 'need to load a database before you can start modelling'
+                print('need to load a database before you can start modelling')
                 pass
         else:
             pass
@@ -517,7 +517,7 @@ class PPPRNotebook(wx.Notebook):
             self.correl_matrix = C
             self.cov_matrix = V
         except:
-            print "There's a hole in the matrix !!!\nOmit unused or insignificant parameters in the calculation.\n"
+            print("There's a hole in the matrix !!!\nOmit unused or insignificant parameters in the calculation.\n")
         
         return
     
@@ -754,7 +754,7 @@ class MainControlPanel(wx.Panel):
         else:
             dims = str.rsplit(str(event.GetString()))
             if len(dims) != 2:
-                print 'need two integer numbers'
+                print('need two integer numbers')
             else:
                 self.plotdims = []
                 for i in dims:
@@ -791,7 +791,7 @@ class MainControlPanel(wx.Panel):
         try:
             a = float(event.GetString())
             if a <= 0 or a > 1:
-                print 'alpha must be > 0 and <= 1'
+                print('alpha must be > 0 and <= 1')
             else:
                 self.simplex_params[0] = a
         except ValueError:
@@ -800,7 +800,7 @@ class MainControlPanel(wx.Panel):
         try:
             a = float(event.GetString())
             if a <= 0 or a > 1:
-                print 'beta must be > 0 and <= 1'
+                print('beta must be > 0 and <= 1')
             else:
                 self.simplex_params[1] = a
         except ValueError:
@@ -809,7 +809,7 @@ class MainControlPanel(wx.Panel):
         try:
             a = float(event.GetString())
             if a <= 0:
-                print 'gamma must be > 0'
+                print('gamma must be > 0')
             else:
                 self.simplex_params[2] = a
         except ValueError:
@@ -818,7 +818,7 @@ class MainControlPanel(wx.Panel):
         try:
             a = float(event.GetString())
             if a <= 0 or a > 1:
-                print 'delta must be > 0 and <= 1'
+                print('delta must be > 0 and <= 1')
             else:
                 self.simplex_params[3] = a
         except ValueError:
@@ -827,7 +827,7 @@ class MainControlPanel(wx.Panel):
         try:
             a = float(event.GetString())
             if a <= 0:
-                print 'ftol must be > 0'
+                print('ftol must be > 0')
             else:
                 self.simplex_params[4] = a
         except ValueError:
@@ -836,7 +836,7 @@ class MainControlPanel(wx.Panel):
         try:
             a = int(event.GetString())
             if a <= 0:
-                print 'maxiter must be > 0'
+                print('maxiter must be > 0')
             else:
                 self.simplex_params[5] = a
         except ValueError:
@@ -854,7 +854,7 @@ class MainControlPanel(wx.Panel):
         try:
             a = float(event.GetString())
             if a <= 0 or a > 0.1:
-                print 'fpc must be > 0 and <= 0.1'
+                print('fpc must be > 0 and <= 0.1')
             else:
                 self.nb.fpc = a
         except ValueError:
@@ -863,7 +863,7 @@ class MainControlPanel(wx.Panel):
     def OnClickStatistics(self,e):
         self.nb.get_used_params()
         if len(self.nb.used_params) == 0:
-            print "NO PARAMETERS SELECTED!"
+            print("NO PARAMETERS SELECTED!")
             pass
         else:
             self.nb.frame.SetStatusText(' computing parameter statistics ', 0)
@@ -877,47 +877,47 @@ class MainControlPanel(wx.Panel):
             self.getparam.SetSelection(0)
 
             if len(self.nb.correl_matrix) > 0:
-                print '\n\n COVARIANCE MATRIX for: \n'
-                print self.nb.used_params
-                print '\n'
-                print self.nb.cov_matrix
-                print '\n\n CORRELATION MATRIX for: \n (numbers on the diagonal are std-deviations of the parameters)\n'
-                print self.nb.used_params
-                print '\n'
-                print self.nb.correl_matrix
+                print('\n\n COVARIANCE MATRIX for: \n')
+                print(self.nb.used_params)
+                print('\n')
+                print(self.nb.cov_matrix)
+                print('\n\n CORRELATION MATRIX for: \n (numbers on the diagonal are std-deviations of the parameters)\n')
+                print(self.nb.used_params)
+                print('\n')
+                print(self.nb.correl_matrix)
                 b = len(self.nb.correl_matrix)
-                print '\n\nParameter Correlations: \n'
-                print '\nParameter Correlations between 0.95 and 1.00: \n'
+                print('\n\nParameter Correlations: \n')
+                print('\nParameter Correlations between 0.95 and 1.00: \n')
                 n = 0
                 for i in range(b):
                     for j in range(b):
                         if j > i:
                             if (self.nb.correl_matrix[i][j] >= 0.95 and self.nb.correl_matrix[i][j] <= 1.0) or (self.nb.correl_matrix[i][j] <= -0.95 and self.nb.correl_matrix[i][j] >= -1.0):
                                 n = n+1
-                                print self.nb.used_params[i] + ' & ' + self.nb.used_params[j] + ': ' + str(round(self.nb.correl_matrix[i][j],5))
-                if n == 0: print 'None \n'
-                else: print '\n'
+                                print(self.nb.used_params[i] + ' & ' + self.nb.used_params[j] + ': ' + str(round(self.nb.correl_matrix[i][j],5)))
+                if n == 0: print('None \n')
+                else: print('\n')
                 n = 0
-                print '\nParameter Correlations between 0.8 and 0.95: \n'
+                print('\nParameter Correlations between 0.8 and 0.95: \n')
                 for i in range(b):
                     for j in range(b):
                         if j > i:
                             if (self.nb.correl_matrix[i][j] >= 0.8 and self.nb.correl_matrix[i][j] < 0.95) or (self.nb.correl_matrix[i][j] <= -0.8 and self.nb.correl_matrix[i][j] > -0.95):
                                 n = n+1
-                                print self.nb.used_params[i] + ' & ' + self.nb.used_params[j] + ': ' + str(round(self.nb.correl_matrix[i][j],5))
-                if n == 0: print 'None \n'
-                else: print '\n'
+                                print(self.nb.used_params[i] + ' & ' + self.nb.used_params[j] + ': ' + str(round(self.nb.correl_matrix[i][j],5)))
+                if n == 0: print('None \n')
+                else: print('\n')
                 n = 0
-                print '\nParameter Correlations between 0.5 and 0.8: \n'
+                print('\nParameter Correlations between 0.5 and 0.8: \n')
                 for i in range(b):
                     for j in range(b):
                         if j > i:
                             if (self.nb.correl_matrix[i][j] >= 0.5 and self.nb.correl_matrix[i][j] < 0.8) or (self.nb.correl_matrix[i][j] <= -0.5 and self.nb.correl_matrix[i][j] > -0.8):
                                 n = n+1
-                                print self.nb.used_params[i] + ' & ' + self.nb.used_params[j] + ': ' + str(round(self.nb.correl_matrix[i][j],5))
-                if n == 0: print 'None \n'
-                else: print '\n'
-                print 'statistics calculation finished, chi**2 = '+str(round(self.nb.chi2,12))+'\n'
+                                print(self.nb.used_params[i] + ' & ' + self.nb.used_params[j] + ': ' + str(round(self.nb.correl_matrix[i][j],5)))
+                if n == 0: print('None \n')
+                else: print('\n')
+                print('statistics calculation finished, chi**2 = '+str(round(self.nb.chi2,12))+'\n')
                 print 'number of used variables = '+str(b)
             self.nb.frame.SetStatusText(' statistics calculation finished, chi**2 = '+str(round(self.nb.chi2,12)), 0)
             self.nb.plot()
@@ -939,10 +939,10 @@ class MainControlPanel(wx.Panel):
         for param in self.nb.used_params:
             if param not in self.nb.batch_model:
                 flag = False
-                print 'Parameter "'+param+'" shell be perturbed by the Monte Carlo method,\n but is not used in the model!!'
+                print('Parameter "'+param+'" shell be perturbed by the Monte Carlo method,\n but is not used in the model!!')
             if self.nb.parameter[param][4] == 0:
                 flag = False
-                print 'Parameter "'+param+'" shell be perturbed by the Monte Carlo method,\n but has a Std-dev of zero!!'
+                print('Parameter "'+param+'" shell be perturbed by the Monte Carlo method,\n but has a Std-dev of zero!!')
         if flag:
             results = []
             means = []
@@ -994,7 +994,7 @@ class MainControlPanel(wx.Panel):
         for param in self.nb.used_params:
             if param not in self.nb.batch_model:
                 flag = False
-                print 'Parameter "'+param+'" shell be adjusted in the fit,\n but is not used in the model!!'
+                print('Parameter "'+param+'" shell be adjusted in the fit,\n but is not used in the model!!')
         if flag == True and self.auto_fit == False:
             self.chi2 = -1
             self.StopFit = False
@@ -1009,14 +1009,14 @@ class MainControlPanel(wx.Panel):
             self.nb.SetSelection(3)
         
         elif flag == True and self.auto_fit == True:
-            print "STARTING AUTO FIT PROCEDURE"
+            print("STARTING AUTO FIT PROCEDURE")
             self.chi2 = -1
             self.StopFit = False
             param_list = []
             for key in self.nb.parameter.keys():
                 if self.nb.parameter[key][3]:
                     param_list.append(key)
-            print str(len(param_list))+" parameters are adjusted: " + str(param_list)
+            print(str(len(param_list))+" parameters are adjusted: " + str(param_list))
             if len(param_list) < self.auto_fit_n:
                 self.auto_fit_n = len(param_list)
                 self.auto_fit_n_box.SetValue(str(self.auto_fit_n))    
@@ -1024,8 +1024,8 @@ class MainControlPanel(wx.Panel):
             while self.StopFit == False:
                 j = j + 1
                 parameter = random.sample(set(param_list), self.auto_fit_n)
-                print "auto fit run " + str(j)
-                print "parameter set : " + str(parameter)
+                print("auto fit run " + str(j))
+                print("parameter set : " + str(parameter))
                 for key in self.nb.parameter.keys():
                     self.nb.parameter[key][3] = False
                 for key in parameter:
@@ -1043,7 +1043,7 @@ class MainControlPanel(wx.Panel):
                     self.nb.parameter[key][3] = False
             for key in param_list:
                 self.nb.parameter[key][3] = True
-            print "AUTO FIT STOPPED BY USER"
+            print("AUTO FIT STOPPED BY USER")
             self.nb.SetSelection(3)
         else:
             pass
