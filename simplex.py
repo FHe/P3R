@@ -121,9 +121,7 @@ def simplex(frame):
     function_values = Num.ndarray((len(used_params)+1),float)
     points = Num.ndarray((len(used_params)+1,len(used_params)),float)
     for i in range(len(used_params)+1):
-        while wx.GetApp().Pending():
-            wx.GetApp().Dispatch()
-            wx.GetApp().Yield(True)
+        wx.Yield()
         if i == 0 and not random_pars:
             points[i] = used_params_values
             frame.nb.parameter = insert(used_params, points[i], frame.nb.parameter)
@@ -152,9 +150,7 @@ def simplex(frame):
     while not_converged:
         frame.SetStatusText(str(z),1)
         Xav = calc_average(points)
-        while wx.GetApp().Pending():
-            wx.GetApp().Dispatch()
-            wx.GetApp().Yield(True)
+        wx.Yield()
         if panel.StopFit:
             frame.SetStatusText('Fit stopped after '+str(z)+' iterations',0)
             not_converged = False
@@ -265,9 +261,7 @@ def LM_fit(frame):
         return J
 
     result = leastsq(target, vector, args = (used_params, insert, frame.nb), Dfun = Jacobi, col_deriv = 1, full_output = 1, ftol = 1e-12)
-    while wx.GetApp().Pending():
-        wx.GetApp().Dispatch()
-        wx.GetApp().Yield(True)
+    wx.Yield()
     print result
     frame.nb.parameter = insert(used_params, result[0], frame.nb.parameter)
     frame.nb.model()

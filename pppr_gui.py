@@ -74,7 +74,7 @@ class wxPPPRFrame(wx.Frame):
         
 
     def OnReadData(self,e):
-        dlg = wx.FileDialog(self, "Choose a data file ", self.dirname, ".dat", "*.dat", wx.OPEN)
+        dlg = wx.FileDialog(self, "Choose a data file ", self.dirname, ".dat", "*.dat", wx.FD_OPEN)
         if dlg.ShowModal() == wx.ID_OK:
             filename = dlg.GetFilename()
             self.dirname = dlg.GetDirectory()
@@ -92,7 +92,7 @@ class wxPPPRFrame(wx.Frame):
         dlg.Destroy()
 
     def OnReadDatabase(self,e):
-        dlg = wx.FileDialog(self, "Choose a database ", self.dirname, ".dat", "*.dat", wx.OPEN)
+        dlg = wx.FileDialog(self, "Choose a database ", self.dirname, ".dat", "*.dat", wx.FD_OPEN)
         if dlg.ShowModal() == wx.ID_OK:
             filename = dlg.GetFilename()
             dirname = dlg.GetDirectory()
@@ -102,7 +102,7 @@ class wxPPPRFrame(wx.Frame):
 
     def OnReadModel(self,e):
         """ Read in a Model file"""
-        dlg = wx.FileDialog(self, "Choose a Model file", self.dirname, ".mod", "*.mod", wx.OPEN)
+        dlg = wx.FileDialog(self, "Choose a Model file", self.dirname, ".mod", "*.mod", wx.FD_OPEN)
         if dlg.ShowModal() == wx.ID_OK:
             filename = dlg.GetFilename()
             self.dirname = dlg.GetDirectory()
@@ -120,7 +120,7 @@ class wxPPPRFrame(wx.Frame):
 
     def OnReadParameter(self,e):
         """ Read in parameter file"""
-        dlg = wx.FileDialog(self, "Choose a parameter file", self.dirname, ".par", "*.par", wx.OPEN)
+        dlg = wx.FileDialog(self, "Choose a parameter file", self.dirname, ".par", "*.par", wx.FD_OPEN)
         if dlg.ShowModal() == wx.ID_OK:
             filename = dlg.GetFilename()
             self.dirname = dlg.GetDirectory()
@@ -154,7 +154,7 @@ class wxPPPRFrame(wx.Frame):
                 control4_tmp = (wx.CheckBox(self.nb.ParameterPage,20000+i+3*len(self.nb.param_labels), label = '', pos = (550, 23*(i+1)+25)))
                 self.nb.ParameterPage.control4.append(control4_tmp)
                 self.nb.ParameterPage.control4[i].SetValue(self.nb.parameter[self.nb.param_labels[i]][3])
-                wx.EVT_CHECKBOX(self.nb.ParameterPage, self.nb.ParameterPage.control4[i].GetId(), self.nb.ParameterPage.editparstate)
+                self.Bind(wx.EVT_CHECKBOX, self.nb.ParameterPage.editparstate)
 
                 control5_tmp = wx.Button(self.nb.ParameterPage, 20000+i+4*len(self.nb.param_labels), label = '<', pos = (610, 23*(i+1)+20), size = (20,20))
                 self.nb.ParameterPage.control5.append(control5_tmp)
@@ -183,7 +183,7 @@ class wxPPPRFrame(wx.Frame):
         self.Close(True)  # Close the frame.
 
     def OnWriteModel(self,e): #write the model with parameter labels to a .mod file
-        dlg = wx.FileDialog(self, "Write model to .mod file", self.dirname, ".mod", "*.mod", wx.SAVE)
+        dlg = wx.FileDialog(self, "Write model to .mod file", self.dirname, ".mod", "*.mod", wx.FD_SAVE)
         if dlg.ShowModal() == wx.ID_OK:
             filename = dlg.GetFilename()
             self.dirname = dlg.GetDirectory()
@@ -193,7 +193,7 @@ class wxPPPRFrame(wx.Frame):
         dlg.Destroy()
 
     def OnWriteModel2(self,e): #write the model with best fit parameters inserted to a .phrq file - the output should be a vaild PhreeqC input file
-        dlg = wx.FileDialog(self, "Write model to .phrq file", self.dirname,".phrq","*.phrq", wx.SAVE)
+        dlg = wx.FileDialog(self, "Write model to .phrq file", self.dirname,".phrq","*.phrq", wx.FD_SAVE)
         if dlg.ShowModal() == wx.ID_OK:
             filename = dlg.GetFilename()
             self.dirname = dlg.GetDirectory()
@@ -205,7 +205,7 @@ class wxPPPRFrame(wx.Frame):
 
     def OnWritePar(self,e):
         dirname = ''
-        dlg = wx.FileDialog(self, "Write parameters to .par file", dirname, ".par", "*.par", wx.SAVE)
+        dlg = wx.FileDialog(self, "Write parameters to .par file", dirname, ".par", "*.par", wx.FD_SAVE)
         if dlg.ShowModal() == wx.ID_OK:
             filename = dlg.GetFilename()
             dirname = dlg.GetDirectory()
@@ -214,7 +214,7 @@ class wxPPPRFrame(wx.Frame):
         dlg.Destroy()
 
     def OnWriteData(self,e):
-        dlg = wx.FileDialog(self, "Write Data .dat file", self.dirname, ".dat", "*.dat", wx.SAVE)
+        dlg = wx.FileDialog(self, "Write Data .dat file", self.dirname, ".dat", "*.dat", wx.FD_SAVE)
         if dlg.ShowModal() == wx.ID_OK:
             filename = dlg.GetFilename()
             self.dirname = dlg.GetDirectory()
@@ -224,7 +224,7 @@ class wxPPPRFrame(wx.Frame):
         dlg.Destroy()
 
     def OnWriteData2(self,e):
-        dlg = wx.FileDialog(self, "Write Data and Fit Results to .dat file", self.dirname, ".dat", "*.dat", wx.SAVE)
+        dlg = wx.FileDialog(self, "Write Data and Fit Results to .dat file", self.dirname, ".dat", "*.dat", wx.FD_SAVE)
         if dlg.ShowModal() == wx.ID_OK:
             filename = dlg.GetFilename()
             self.dirname = dlg.GetDirectory()
@@ -286,7 +286,8 @@ class PPPRNotebook(wx.Notebook):
         if self.Phreeq == None or self.Phreeq_age >= 20:
             self.Phreeq = None
             self.Phreeq = IPhreeqc()
-            self.Phreeq.load_database(self.database)
+            if self.database_loaded:
+                self.Phreeq.load_database(self.database)
             self.Phreeq.set_selected_output_file_off()
             self.Phreeq_age = 0
         else:
@@ -614,7 +615,7 @@ class MainControlPanel(wx.Panel):
                     self.datagrid.SetCellEditor(i,j,gridlib.GridCellFloatEditor())
                 elif j == 4:
                     self.datagrid.SetCellEditor(i,j,gridlib.GridCellNumberEditor(-1,3))
-        self.Bind(gridlib.EVT_GRID_CELL_CHANGE, self.OnCellChange)            
+        self.Bind(gridlib.EVT_GRID_CELL_CHANGED, self.OnCellChange)            
 
         #Fitting option use random start parameters
         self.getfitalgo = wx.ComboBox(self,-1, value="Levenberg-Marquardt",\
@@ -624,12 +625,12 @@ class MainControlPanel(wx.Panel):
         
         self.random_pars = wx.CheckBox(self, label = '  start Fit with random parameter values', pos = (520, 65))
         self.random_pars.SetValue(False)
-        wx.EVT_CHECKBOX(self, self.random_pars.GetId(), self.setrandom_pars)
+        self.Bind(wx.EVT_CHECKBOX, self.setrandom_pars)
 
         #Fitting option auto_fit
         self.auto_fit_box = wx.CheckBox(self, label = '  auto fit,   number of params:', pos = (520, 90))
         self.auto_fit_box.SetValue(False)
-        wx.EVT_CHECKBOX(self, self.auto_fit_box.GetId(), self.setauto_fit)
+        self.Bind(wx.EVT_CHECKBOX, self.setauto_fit)
 
         self.auto_fit_n_box = wx.TextCtrl(self, pos=(700,90), size=(60,20))
         self.auto_fit_n_box.SetValue(str(self.auto_fit_n))
@@ -772,10 +773,12 @@ class MainControlPanel(wx.Panel):
         self.fitalgo = event.GetSelection()
         
     def setrandom_pars(self,e):
-        self.simplex_params[6] = self.random_pars.GetValue()    
+        cb = e.GetEventObject()
+        self.simplex_params[6] = cb.GetValue()    
 
     def setauto_fit(self, e):
-        self.auto_fit = self.auto_fit_box.GetValue()
+        cb = e.GetEventObject()
+        self.auto_fit = cb.GetValue()
         
     def setauto_fit_n(self, event):
         try:
@@ -948,9 +951,7 @@ class MainControlPanel(wx.Panel):
             if self.nb.mcmode == 0:
                 self.nb.frame.SetStatusText('Performing Monte Carlo Parameter Perturbation',0)
                 for i in range(self.nb.mcn):
-                    while wx.GetApp().Pending():
-                        wx.GetApp().Dispatch()
-                        wx.GetApp().Yield(True)
+                    wx.Yield()
                     self.nb.frame.SetStatusText(str(i),1)
                     for j in range(len(self.nb.used_params)):
                         self.nb.parameter[self.nb.used_params[j]][0] = Num.random.normal(means[j],self.nb.parameter[self.nb.used_params[j]][4])
@@ -966,9 +967,7 @@ class MainControlPanel(wx.Panel):
                 self.nb.statistics()
                 self.nb.frame.SetStatusText('Performing Monte Carlo Parameter Perturbation',0)
                 for i in range(self.nb.mcn):
-                    while wx.GetApp().Pending():
-                        wx.GetApp().Dispatch()
-                        wx.GetApp().Yield(True)
+                    wx.Yield()
                     self.nb.frame.SetStatusText(str(i),1)
                     values = Num.random.multivariate_normal(means,self.nb.cov_matrix)
                     for j in range(len(self.nb.used_params)):
@@ -1003,9 +1002,7 @@ class MainControlPanel(wx.Panel):
                 LM_fit(self.nb.frame)
             elif self.fitalgo == 1:
                 simplex(self.nb.frame)
-            while wx.GetApp().Pending():
-                wx.GetApp().Dispatch()
-                wx.GetApp().Yield(True)
+                wx.Yield()
             for i in range(len(self.nb.param_labels)):
                 if self.nb.parameter[self.nb.param_labels[i]][3] and self.nb.parameter[self.nb.param_labels[i]][5] == '':
                     self.nb.ParameterPage.control1[i].SetValue(str(round(self.nb.parameter[self.nb.param_labels[i]][0], 12)))
@@ -1037,9 +1034,7 @@ class MainControlPanel(wx.Panel):
                     LM_fit(self.nb.frame)
                 elif self.fitalgo == 1:
                     simplex(self.nb.frame)
-                while wx.GetApp().Pending():
-                    wx.GetApp().Dispatch()
-                    wx.GetApp().Yield(True)
+                    wx.Yield()
                 for i in range(len(self.nb.param_labels)):
                     if self.nb.parameter[self.nb.param_labels[i]][3] and self.nb.parameter[self.nb.param_labels[i]][5] == '':
                         self.nb.ParameterPage.control1[i].SetValue(str(round(self.nb.parameter[self.nb.param_labels[i]][0], 12)))
