@@ -13,7 +13,6 @@ from scipy.optimize import leastsq
 import random
 import wx
 import time
-#from plotframe import createplotframe
 
 ############################### methods used by simplex ############################################################################################
 def insert(used_params, point, parameter):

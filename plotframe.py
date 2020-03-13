@@ -12,7 +12,7 @@ import wx
 import os
 import numpy as Num
 from matplotlib.backends.backend_wxagg import FigureCanvasWxAgg
-from matplotlib.backends.backend_wx import NavigationToolbar2Wx
+#from matplotlib.backends.backend_wx import NavigationToolbar2Wx
 from matplotlib.figure import Figure
 
 ################################################################################
@@ -39,10 +39,10 @@ class wxPlotFrame(wx.Frame):
         self.Bind(wx.EVT_MENU, self._OnClose,menuexit)
         self.Bind(wx.EVT_CLOSE, self._OnClose)
 
-        self.toolbar = NavigationToolbar2Wx(self.canvas)
-        self.toolbar.Realize()
-        self.sizer.Add(self.toolbar, 0, wx.LEFT | wx.EXPAND)
-        self.toolbar.update()
+        #self.toolbar = NavigationToolbar2Wx(self.canvas)
+        #self.toolbar.Realize()
+        #self.sizer.Add(self.toolbar, 0, wx.LEFT | wx.EXPAND)
+        #self.toolbar.update()
         
         
     def _OnSave(self, event):

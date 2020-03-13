@@ -1,0 +1,15 @@
+END
+SOLUTION 1
+	units  mol/kgw
+	temp   25.0
+	pH      6.93012
+	pe     -5.77614
+	water   1.00000
+	H(0)    7.72102e-006
+EQUILIBRIUM_PHASES 1
+	fix_pH          -5.043000e+000	HCl              1.000000e+001
+SURFACE 1
+	Si_s         	 7.72102e-006
+	-cd_music
+	-equil  1
+END
